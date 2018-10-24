@@ -1,0 +1,35 @@
+/*
+* Definition of grammar rules for production and also
+* terminal and non terminal symbols for the Pascal.
+*/
+
+terminal        LPAREN, RPAREN, MINUS, PLUS, 
+                DIV, TIMES, DIGIT, NUMBER, 
+                LETTER, STRING, COLON, SEMICOLON, 
+                COMMA, DOT, PROGRAM, IDENTIFIER, 
+                IDENTIFIERLIST, BEGIN, END;
+
+non terminal    program, 
+                program_heading, 
+                block, 
+                identifier, 
+                identifier_list, 
+                declaration_part, 
+                statement_part,
+                statement_sequence, 
+                sign, 
+                char, 
+                letter, 
+                digit, 
+                number;
+
+program             ::= program_heading block DOT;
+program_heading     ::= PROGRAM identifier LPAREN identifier_list RPAREN SEMICOLON;
+block               ::= declaration_part statement_part;
+declaration_part    ::= label;
+statement_part      ::= begin statement_sequence end;
+statement_sequence  ::= ;
+
+identifier          ::= letter {letter | digit};
+identifier_list     ::= identifier {COLON identifier};
+letter              ::= LETTER;
